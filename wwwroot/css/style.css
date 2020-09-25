@@ -1,0 +1,129 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+/***********************************************************************/
+/*Global CSS Start*/
+/***********************************************************************/
+.login-page {
+    width: 360px;
+    padding: 8% 0 0;
+    margin: auto;
+}
+
+.login-form {
+    position: relative;
+    z-index: 1;
+    background: rgba(0, 99, 148, .25);
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+    .login-form input {
+        font-family: "Roboto", sans-serif;
+        outline: 0;
+        background: #f2f2f2;
+        width: 100%;
+        border: 0;
+        margin: 0 0 15px;
+        padding: 15px;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+
+    .login-form button {
+        font-family: "Roboto", sans-serif;
+        text-transform: uppercase;
+        outline: 0;
+        background: #4CAF50;
+        width: 100%;
+        border: 0;
+        padding: 15px;
+        color: #FFFFFF;
+        font-size: 14px;
+        -webkit-transition: all 0.3 ease;
+        transition: all 0.3 ease;
+        cursor: pointer;
+    }
+
+        .login-form button:hover, .login-form button:active, .login-form button:focus {
+            background: #43A047;
+        }
+
+    .login-form .message {
+        margin: 15px 0 0;
+        color: #b3b3b3;
+        font-size: 12px;
+    }
+
+        .login-form .message a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+    .login-form .register-form {
+        display: none;
+    }
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+/***********************************************************************/
+/*Global CSS End*/
+/***********************************************************************/
+
+
+/***********************************************************************/
+/*Account Webpage CSS (IDs) Start*/
+/***********************************************************************/
+#error-block ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    padding-top: 10px;
+}
+
+#login-title{
+    color: white;
+}
+
+#login-body {
+    background-image: linear-gradient(rgba(0,0,0,.62), rgba(0,0,0,.62)), url('../images/Account Pages/login-background.jpg');
+    background-size: cover;
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    animation: fadeInAnimation ease 2.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+#login-button {
+    background: #00aaff;
+}
+
+#signup-title {
+    color: white;
+}
+
+#signup-button {
+    background: #00aaff;
+}
+
+#message-redirect {
+    color: #d6f1ff;
+}
+
+#message-action {
+    color: #00aaff;
+}
+/***********************************************************************/
+/*Account Webpage CSS End*/
+/***********************************************************************/
