@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 namespace Rock_Market.Areas.Identity.Data
 {
     // Add profile data for application users by adding properties to the Rock_MarketUser class
+    // This is where we can  add new columns and whatnot to our database. When doing so, you just have to add the migration and update the database.
     public class Rock_MarketUser : IdentityUser
     {
         [PersonalData]

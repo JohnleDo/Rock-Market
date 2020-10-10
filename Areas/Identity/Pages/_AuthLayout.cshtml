@@ -1,20 +1,10 @@
 ﻿<link href="~/css/style.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 
-<body id="login-body">
-    <div class="login-page">
-        <div class="login-form">
+<body class="auth-body">
+    <div class="auth-page">
+        <div class="auth-form">
             @RenderBody()
-            @*<h2 id="login-title">Login</h2>
-                <form asp-action="Login">
-                    <input asp-for="Username" value="" placeholder="Username" class="form-control" />
-                    @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Password" })
-                    <button id="login-button">login</button>
-                    <span class="text-danger" id="error-block">
-                        @Html.ValidationSummary(true)
-                    </span>
-                    <p class="message" id="message-redirect">Not registered? <a asp-action="SignUp" id="message-action">Create an account</a></p>
-                </form>*@
         </div>
     </div>
 </body>

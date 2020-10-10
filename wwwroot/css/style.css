@@ -1,15 +1,27 @@
 ﻿@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+@import url('https://fonts.googleapis.com/css2?family=Khula:wght@700&display=swap');
 
 /***********************************************************************/
-/*Global CSS Start*/
+/*Classes Start*/
 /***********************************************************************/
-.login-page {
+.auth-body {
+    background-image: linear-gradient(rgba(0,0,0,.62), rgba(0,0,0,.62)), url('../images/Account Pages/login-background.jpg');
+    background-size: cover;
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    animation: fadeInAnimation ease 2.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.auth-page {
     width: 360px;
     padding: 8% 0 0;
     margin: auto;
 }
 
-.login-form {
+.auth-form {
     position: relative;
     z-index: 1;
     background: rgba(0, 99, 148, .25);
@@ -20,7 +32,7 @@
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-    .login-form input {
+    .auth-form input {
         font-family: "Roboto", sans-serif;
         outline: 0;
         background: #f2f2f2;
@@ -32,7 +44,7 @@
         font-size: 14px;
     }
 
-    .login-form button {
+    .auth-form button {
         font-family: "Roboto", sans-serif;
         text-transform: uppercase;
         outline: 0;
@@ -42,28 +54,138 @@
         padding: 15px;
         color: #FFFFFF;
         font-size: 14px;
-        -webkit-transition: all 0.3 ease;
-        transition: all 0.3 ease;
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
         cursor: pointer;
     }
 
-        .login-form button:hover, .login-form button:active, .login-form button:focus {
+        .auth-form button:hover, .auth-form button:active, .auth-form button:focus {
             background: #43A047;
         }
 
-    .login-form .message {
+    .auth-form .message {
         margin: 15px 0 0;
         color: #b3b3b3;
         font-size: 12px;
     }
 
-        .login-form .message a {
+        .auth-form .message a {
             color: #4CAF50;
             text-decoration: none;
         }
 
-    .login-form .register-form {
-        display: none;
+.dropdown-menu, dropdown-menu-lg-right, dropdown-secondary {
+    margin-top: 7px;
+    background-color: rgb(33, 42, 57);
+    min-width: 3rem;
+    color: white;
+    margin-right: -100px;
+}
+
+.dropdown-item {
+    color: white;
+}
+
+    .dropdown-item:hover:first-child {
+        text-decoration: none;
+        background-color: transparent !important;
+    }
+
+.main-container {
+    font-family: "Roboto", sans-serif;
+    color: lightgray;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    font-weight: bold;
+}
+
+    .main-container h1, h2, h3, h4, h5 {
+        color: white;
+        font-weight: bold;
+    }
+
+    .main-container .input-group {
+        width: 500px;
+        font-weight: bold;
+    }
+
+        .main-container .input-group:hover input[type=text] {
+            border-bottom-color: dodgerblue;
+        }
+
+
+        .main-container .input-group input[type=text] {
+            height: 60px;
+            background-color: rgba(0, 0, 0, .10);
+            border-color: rgba(0, 0, 0, .10);
+            border-bottom-color: dimgrey;
+            border-bottom-width: 6px;
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+            color: white;
+            font-weight: bold;
+        }
+
+
+        .main-container .input-group .input-group-append span {
+            background-color: rgba(0, 0, 0, .10);
+            border-color: green;
+            border-bottom-color: green;
+            border-bottom-width: 6px;
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+            color: white;
+            font-weight: bold;
+        }
+
+    .main-container input[type=tel], .main-container input[type=email], .main-container input[type=password] {
+        height: 60px;
+        width: 500px;
+        background-color: rgba(0, 0, 0, .10);
+        border-color: rgba(0, 0, 0, .10);
+        border-bottom-color: dimgray;
+        border-bottom-width: 6px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+        color: white;
+        font-weight: bold;
+    }
+
+        .main-container input[type=tel]:hover, .main-container input[type=email]:hover, .main-container input[type=password]:hover {
+            border-bottom-color: dodgerblue;
+        }
+
+        .main-container input[type=tel]:focus, .main-container input[type=email]:focus, .main-container input[type=password]:focus {
+            border-bottom-color: dodgerblue;
+            box-shadow: none;
+        }
+
+
+.sidebar {
+    margin-left: 10px;
+    line-height: 2.8;
+    color: white;
+    padding-top: 20px;
+    font-family: 'Khula', sans-serif;
+    font-size: 18px;
+    position: sticky;
+    top: 3em;
+}
+
+.sidebar-menu-item {
+    padding-left: 20px;
+    white-space: nowrap;
+}
+
+    .sidebar-menu-item:hover {
+        -moz-border-radius-topleft: 10px;
+        -moz-border-radius-topright: 10px;
+        -moz-border-radius-bottomright: 10px;
+        -moz-border-radius-bottomleft: 10px;
+        -webkit-border-radius: 10px 10px 10px 10px;
+        border-radius: 50px;
+        background-color: rgb(37, 47, 65);
     }
 
 @keyframes fadeInAnimation {
@@ -75,14 +197,43 @@
         opacity: 1;
     }
 }
-/***********************************************************************/
-/*Global CSS End*/
-/***********************************************************************/
-
 
 /***********************************************************************/
-/*Account Webpage CSS (IDs) Start*/
+/*IDs Start*/
 /***********************************************************************/
+#layout-container {
+    padding-top: 65px;
+    min-height: 100%;
+}
+
+#layout-middle-col {
+    border-style: solid;
+    border-color: lightslategray;
+    border-width: 1px;
+}
+
+#layout-body {
+    background-color: rgb(41, 58, 77);
+}
+
+#layout-navbar {
+    background-color: rgb(33, 42, 57);
+}
+
+#layout-footer {
+    background-color: rgb(33, 42, 57);
+    position: fixed;
+}
+
+#login-avatar {
+    height: 30px;
+    width: 30px;
+}
+
+#logoutForm {
+    padding: 0px;
+}
+
 #error-block ul {
     list-style-type: none;
     margin: 0px;
@@ -90,19 +241,8 @@
     padding-top: 10px;
 }
 
-#login-title{
+#login-title {
     color: white;
-}
-
-#login-body {
-    background-image: linear-gradient(rgba(0,0,0,.62), rgba(0,0,0,.62)), url('../images/Account Pages/login-background.jpg');
-    background-size: cover;
-    font-family: "Roboto", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    animation: fadeInAnimation ease 2.5s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
 }
 
 #login-button {
@@ -124,6 +264,85 @@
 #message-action {
     color: #00aaff;
 }
-/***********************************************************************/
-/*Account Webpage CSS End*/
-/***********************************************************************/
+
+#input-locked-green {
+    pointer-events: none;
+}
+
+    #input-locked-green input[type=text] {
+        border-color: forestgreen;
+    }
+
+    #input-locked-green .input-group input[type=text] {
+        border-color: forestgreen;
+    }
+
+#input-locked-red {
+    pointer-events: none;
+}
+
+    #input-locked-red input[type=text] {
+        border-color: darkred;
+    }
+
+    #input-locked-red .input-group input[type=text] {
+        border-color: darkred;
+    }
+
+    #input-locked-red .input-group-append span{
+        border-color: darkred;
+    }
+
+#main-btn {
+    -moz-border-radius-topleft: 20px;
+    -moz-border-radius-topright: 20px;
+    -moz-border-radius-bottomright: 20px;
+    -moz-border-radius-bottomleft: 20px;
+    -webkit-border-radius: 20px 20px 20px 20px;
+    border-radius: 50px;
+    background-color: rgb(0, 40, 77);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+    #main-btn:hover {
+        background-color: rgb(0, 66, 128);
+    }
+
+#main-btn-danger {
+    -moz-border-radius-topleft: 20px;
+    -moz-border-radius-topright: 20px;
+    -moz-border-radius-bottomright: 20px;
+    -moz-border-radius-bottomleft: 20px;
+    -webkit-border-radius: 20px 20px 20px 20px;
+    border-radius: 50px;
+    background-color: rgb(179, 0, 0);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+    #main-btn-danger:hover {
+        background-color: rgb(153, 0, 0);
+    }
+
+#verify-code-input {
+    height: 60px;
+    width: 500px;
+    background-color: rgba(0, 0, 0, .10);
+    border-color: rgba(0, 0, 0, .10);
+    border-bottom-color: dimgray;
+    border-bottom-width: 6px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    color: white;
+    font-weight: bold;
+}
+
+    #verify-code-input:hover {
+        border-bottom-color: dodgerblue;
+    }
+
+    #verify-code-input:focus {
+        border-bottom-color: dodgerblue;
+        box-shadow: none;
+    }

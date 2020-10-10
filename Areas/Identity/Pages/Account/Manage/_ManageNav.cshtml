@@ -1,0 +1,51 @@
+﻿@inject SignInManager<Rock_MarketUser> SignInManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+
+<div class="sidebar">
+    <p class="sidebar-menu-item">
+        <i class="fas fa-user-alt fa-lg"></i>
+        <a class="text-white @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index" style="text-decoration:none">
+            Profile 
+        </a>
+    </p>
+
+    <p class="sidebar-menu-item">
+        <i class="fas fa-envelope fa-lg"></i>
+        <a class="text-white @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email" style="text-decoration:none">
+            Email
+        </a>
+    </p>
+
+    <p class="sidebar-menu-item">
+        <i class="fas fa-lock fa-lg"></i>
+        <a class="text-white @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword" style="text-decoration:none">
+            Password
+        </a>
+    </p>
+
+    @if (hasExternalLogins)
+    {
+        <p class="sidebar-menu-item">
+            <i class="fas fa-sign-in-alt fa-lg"></i>
+            <a class="text-white @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins" style="text-decoration:none">
+                External logins
+            </a>
+        </p>
+    }
+
+    <p class="sidebar-menu-item">
+        <i class="fas fa-user-shield fa-lg"></i>
+        <a class="text-white @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication" style="text-decoration:none">
+            Two-factor Auth
+        </a>
+    </p>
+
+    <p class="sidebar-menu-item">
+        <i class="fas fa-asterisk fa-lg"></i>
+        <a class="text-white @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData" style="text-decoration:none">
+            Personal data
+        </a>
+    </p>
+</div>

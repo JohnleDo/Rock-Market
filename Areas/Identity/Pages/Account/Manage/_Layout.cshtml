@@ -1,0 +1,21 @@
+﻿@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
+    {
+        Layout = (string)parentLayout;
+    }
+    else
+    {
+        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    }
+}
+
+@section sidebar {
+    <partial name="_ManageNav" />
+}
+
+@RenderBody()
+
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

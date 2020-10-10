@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Rock_Market.Areas.Identity.Data;
+using Rock_Market.Models;
 
 namespace Rock_Market.Data
 {
+    // This class will reference our Rock_Market class and override our database with whatever in that class
     public class AuthDBContext : IdentityDbContext<Rock_MarketUser>
     {
         public AuthDBContext(DbContextOptions<AuthDBContext> options)
@@ -23,5 +25,7 @@ namespace Rock_Market.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+
+        public DbSet<Rock_Market.Models.CreateRoleViewModel> ProjectRole { get; set; }
     }
 }
