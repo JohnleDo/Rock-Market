@@ -6,6 +6,7 @@
 
 @inject SignInManager<Rock_MarketUser> SignInManager
 @inject UserManager<Rock_MarketUser> UserManager
+@inject RoleManager<IdentityRole> RoleManager
 
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
@@ -22,7 +23,17 @@
                      alt="avatar image" id="login-avatar">
             </a>
             <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary">
+                @{var userInfo = UserManager.GetUserAsync(User); }
+                @{var userRole = UserManager.GetRolesAsync(userInfo.Result);}
+
                 <a class="dropdown-item">@UserManager.GetUserName(User)</a>
+                @foreach (var role in userRole.Result)
+                {
+                    if (role == "Administrator")
+                    {
+                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="">Administrator Settings</a>
+                    }
+                }
                 <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Profile Settings</a>
                 <form id="logoutForm" class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                     <button id="logout" type="submit" class="dropdown-item">Logout</button>

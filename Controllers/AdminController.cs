@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using Rock_Market.Areas.Identity.Data;
 using Rock_Market.Data;
@@ -27,10 +28,11 @@ namespace Rock_Market.Controllers
             this.userManager = userManager;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var users = userManager.Users;
-            var usersAndRoles = new ListUserAndRoleViewModel();
+            var usersAndRoles = new AdminToolsViewModel();
             foreach (var user in userManager.Users)
             {
                 var userRoles = await userManager.GetRolesAsync(user);
@@ -38,6 +40,12 @@ namespace Rock_Market.Controllers
                 var model = new ListUsersViewModel
                 {
                     Id = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Phone = user.PhoneNumber,
+                    Address = user.Address,
+                    City = user.City,
+                    State = user.State,
                     Email = user.Email,
                     Roles = userRoles
 
@@ -45,7 +53,7 @@ namespace Rock_Market.Controllers
                 usersAndRoles.Users.Add(model);
             }
 
-            usersAndRoles.Roless = roleManager.Roles.ToList();
+            usersAndRoles.Roles = roleManager.Roles.ToList();
 
             return View(usersAndRoles);
         }
@@ -220,11 +228,72 @@ namespace Rock_Market.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult> CreateRoleIndex(AdminToolsViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // We just need to specify a unique role name to create a new role
+                IdentityRole identityRole = new IdentityRole
+                {
+                    Name = model.createRole.RoleName
+                };
+
+                // Saves the role in the underlying AspNetRoles table
+                IdentityResult result = await roleManager.CreateAsync(identityRole);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("index", "admin");
+                }
+
+                foreach (IdentityError error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+            }
+
+            return View("Index", model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteRoles(List<string> roleIds)
+        {
+            foreach (var roleId in roleIds)
+            {
+                var role = await roleManager.FindByIdAsync(roleId);
+
+                if (role == null)
+                {
+                    ViewBag.ErrorMessage = $"Role with Id = {roleId} cannot be found";
+                }
+                else
+                {
+                    var result = await roleManager.DeleteAsync(role);
+
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                }
+            }
+
+            return Json(new { sucess = true });
+        }
+
+
+        /* 
+         * ***********************************************************************************************************************************************
+         * Stuff not being used
+         * ***********************************************************************************************************************************************
+         */
+        // Left in as referenced. Can still be accessed by referencing this url.
         public IActionResult CreateRole()
         {
             return View();
         }
 
+        // Left in as referenced. Can still be used when excueting it via from its View page.
         [HttpPost]
         public async Task<IActionResult> CreateRole(CreateRoleViewModel model)
         {
@@ -241,7 +310,7 @@ namespace Rock_Market.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("index", "home");
+                    return RedirectToAction("index", "admin");
                 }
 
                 foreach (IdentityError error in result.Errors)
@@ -252,5 +321,7 @@ namespace Rock_Market.Controllers
 
             return View(model);
         }
+
+
     }
 }

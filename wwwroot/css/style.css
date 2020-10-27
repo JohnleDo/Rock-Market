@@ -98,7 +98,12 @@
     padding-bottom: 20px;
     padding-left: 10px;
     font-weight: bold;
+    word-wrap: break-word;
 }
+
+    .main-container table {
+        color: white;
+    }
 
     .main-container h1, h2, h3, h4, h5 {
         color: white;
@@ -160,6 +165,18 @@
             border-bottom-color: dodgerblue;
             box-shadow: none;
         }
+
+
+.modal-content {
+    width: 800px;
+    top: 200px;
+    left: -150px;
+    background-color: rgb(41, 58, 77);
+}
+
+.modal-header {
+    background-color: rgb(33, 42, 57);
+}
 
 
 .sidebar {
@@ -289,7 +306,7 @@
         border-color: darkred;
     }
 
-    #input-locked-red .input-group-append span{
+    #input-locked-red .input-group-append span {
         border-color: darkred;
     }
 
