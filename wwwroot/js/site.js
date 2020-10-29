@@ -9,26 +9,42 @@ function UserDetailFormatter(index, row) {
     var html = []
     if (model['users'][index]['email'] == row['username'] && model['users'][index]['id'] == row['id']) {
         html.push('<p><b>Username/Email :</b> ' + row['username'] + '</p>')
+        html.push('<hr>')
         html.push('<p><b>ID :</b> ' + row['id'] + '</p>')
+        html.push('<hr>')
         html.push('<p><b>First Name :</b> ' + model['users'][index]['firstName'] + '</p>')
+        html.push('<hr>')
         html.push('<p><b>Last Name :</b> ' + model['users'][index]['lastName'] + '</p>')
+        html.push('<hr>')
         html.push('<p><b>Phone Number :</b> ' + model['users'][index]['phone'] + '</p>')
+        html.push('<hr>')
         html.push('<p><b>Address :</b> ' + model['users'][index]['address'] + '</p>')
+        html.push('<hr>')
         html.push('<p><b>City :</b> ' + model['users'][index]['city'] + '</p>')
+        html.push('<hr>')
         html.push('<p><b>State :</b> ' + model['users'][index]['state'] + '</p>')
+        html.push('<hr>')
         return html.join('')
     }
     else {
         for (i = 0; i < model['users'].length; i++) {
             if (model['users'][i]['email'] == row['username'] && model['users'][i]['id'] == row['id']) {
                 html.push('<p><b>Username/Email :</b> ' + row['username'] + '</p>')
+                html.push('<hr>')
                 html.push('<p><b>ID :</b> ' + row['id'] + '</p>')
+                html.push('<hr>')
                 html.push('<p><b>First Name :</b> ' + model['users'][i]['firstName'] + '</p>')
+                html.push('<hr>')
                 html.push('<p><b>Last Name :</b> ' + model['users'][i]['lastName'] + '</p>')
+                html.push('<hr>')
                 html.push('<p><b>Phone Number :</b> ' + model['users'][i]['phone'] + '</p>')
+                html.push('<hr>')
                 html.push('<p><b>Address :</b> ' + model['users'][i]['address'] + '</p>')
+                html.push('<hr>')
                 html.push('<p><b>City :</b> ' + model['users'][i]['city'] + '</p>')
+                html.push('<hr>')
                 html.push('<p><b>State :</b> ' + model['users'][i]['state'] + '</p>')
+                html.push('<hr>')
                 return html.join('')
             }
         }
@@ -106,8 +122,8 @@ function inituserTable() {
             searchable: true,
             field: 'role'
         }, {
-            title: 'Some',
-            field: 'some'
+            title: 'Edit/Delete',
+            field: 'modify'
         }]
     })
 }

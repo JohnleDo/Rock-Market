@@ -36,6 +36,21 @@ namespace Rock_Market.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
+            [Display(Name = "Home Address")]
+            public string Address { get; set; }
+
+            [Display(Name = "City")]
+            public string City { get; set; }
+
+            [Display(Name = "State")]
+            public string State { get; set; }
         }
 
         private async Task LoadAsync(Rock_MarketUser user)
@@ -47,7 +62,12 @@ namespace Rock_Market.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Address = user.Address,
+                City = user.City,
+                State = user.State
             };
         }
 
@@ -77,6 +97,7 @@ namespace Rock_Market.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
+            // Updating User's Phone number or setting one if not done so.
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             if (Input.PhoneNumber != phoneNumber)
             {
@@ -86,6 +107,20 @@ namespace Rock_Market.Areas.Identity.Pages.Account.Manage
                     StatusMessage = "Unexpected error when trying to set phone number.";
                     return RedirectToPage();
                 }
+            }
+
+            // Updating User information.
+            user.FirstName = Input.FirstName;
+            user.LastName = Input.LastName;
+            user.Address = Input.Address;
+            user.City = Input.City;
+            user.State = Input.State;
+            var result = await _userManager.UpdateAsync(user);
+
+            if (!result.Succeeded)
+            {
+                StatusMessage = "Unexpected error when trying to update information.";
+                return RedirectToPage();
             }
 
             await _signInManager.RefreshSignInAsync(user);

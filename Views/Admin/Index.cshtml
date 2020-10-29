@@ -8,6 +8,9 @@
 @section sidebar {
     <partial name="_AdminSideBar.cshtml" />
 }
+
+@{var counter = 0;}
+
 <body onload="initTables()">
 </body>
 <div class="main-container">
@@ -45,12 +48,136 @@
                             <td>No Roles Found</td>
                         }
                         <td>
-                            <form method="post" asp-action="DeleteUser" asp-route-id="@user.Id">
-                                <a asp-action="EditUser" asp-controller="Admin" asp-route-id="@user.Id">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                            </form>
+                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="@("#editUserModal_" + counter)"><i class="fas fa-edit"></i></button>
+
+                            <!--Popup modal for creating a new user-->
+                            <div class="modal fade" id="@("editUserModal_" + counter)" tabindex="-1" role="dialog" aria-labelledby="@("editUserModal_" + counter)" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content" id="editUser-modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="@("editUserModal_" + counter + "Label")">Edit User: @user.Id</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <form asp-action="EditUserIndex" method="post" class="mt-3">
+                                                        <div class="form-group">
+                                                            <label asp-for="@Model.Users[counter].Id" class="input-group"></label>
+                                                            <input asp-for="@Model.Users[counter].Id" readonly class="form-control">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Email/Username:</label>
+                                                            <input asp-for="@Model.Users[counter].Email" class="form-control">
+                                                            <span asp-validation-for="@Model.Users[counter].Email" class="text-danger"></span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label asp-for="@Model.Users[counter].FirstName"></label>
+                                                            <input asp-for="@Model.Users[counter].FirstName" class="form-control">
+                                                            <span asp-validation-for="@Model.Users[counter].FirstName" class="text-danger" hidden></span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label asp-for="@Model.Users[counter].LastName"></label>
+                                                            <input asp-for="@Model.Users[counter].LastName" class="form-control">
+                                                            <span asp-validation-for="@Model.Users[counter].LastName" class="text-danger" hidden></span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label asp-for="@Model.Users[counter].Phone"></label>
+                                                            <input asp-for="@Model.Users[counter].Phone" class="form-control">
+                                                            <span asp-validation-for="@Model.Users[counter].Phone" class="text-danger" hidden></span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label asp-for="@Model.Users[counter].Address"></label>
+                                                            <input asp-for="@Model.Users[counter].Address" class="form-control">
+                                                            <span asp-validation-for="@Model.Users[counter].Address" class="text-danger" hidden></span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label asp-for="@Model.Users[counter].City"></label>
+                                                            <input asp-for="@Model.Users[counter].City" class="form-control">
+                                                            <span asp-validation-for="@Model.Users[counter].City" class="text-danger" hidden></span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label asp-for="@Model.Users[counter].State"></label>
+                                                            <select asp-for="@Model.Users[counter].State" class="form-control">
+                                                                <option value="AL">Alabama</option>
+                                                                <option value="AK">Alaska</option>
+                                                                <option value="AZ">Arizona</option>
+                                                                <option value="AR">Arkansas</option>
+                                                                <option value="CA">California</option>
+                                                                <option value="CO">Colorado</option>
+                                                                <option value="CT">Connecticut</option>
+                                                                <option value="DE">Delaware</option>
+                                                                <option value="DC">District Of Columbia</option>
+                                                                <option value="FL">Florida</option>
+                                                                <option value="GA">Georgia</option>
+                                                                <option value="HI">Hawaii</option>
+                                                                <option value="ID">Idaho</option>
+                                                                <option value="IL">Illinois</option>
+                                                                <option value="IN">Indiana</option>
+                                                                <option value="IA">Iowa</option>
+                                                                <option value="KS">Kansas</option>
+                                                                <option value="KY">Kentucky</option>
+                                                                <option value="LA">Louisiana</option>
+                                                                <option value="ME">Maine</option>
+                                                                <option value="MD">Maryland</option>
+                                                                <option value="MA">Massachusetts</option>
+                                                                <option value="MI">Michigan</option>
+                                                                <option value="MN">Minnesota</option>
+                                                                <option value="MS">Mississippi</option>
+                                                                <option value="MO">Missouri</option>
+                                                                <option value="MT">Montana</option>
+                                                                <option value="NE">Nebraska</option>
+                                                                <option value="NV">Nevada</option>
+                                                                <option value="NH">New Hampshire</option>
+                                                                <option value="NJ">New Jersey</option>
+                                                                <option value="NM">New Mexico</option>
+                                                                <option value="NY">New York</option>
+                                                                <option value="NC">North Carolina</option>
+                                                                <option value="ND">North Dakota</option>
+                                                                <option value="OH">Ohio</option>
+                                                                <option value="OK">Oklahoma</option>
+                                                                <option value="OR">Oregon</option>
+                                                                <option value="PA">Pennsylvania</option>
+                                                                <option value="RI">Rhode Island</option>
+                                                                <option value="SC">South Carolina</option>
+                                                                <option value="SD">South Dakota</option>
+                                                                <option value="TN">Tennessee</option>
+                                                                <option value="TX">Texas</option>
+                                                                <option value="UT">Utah</option>
+                                                                <option value="VT">Vermont</option>
+                                                                <option value="VA">Virginia</option>
+                                                                <option value="WA">Washington</option>
+                                                                <option value="WV">West Virginia</option>
+                                                                <option value="WI">Wisconsin</option>
+                                                                <option value="WY">Wyoming</option>
+                                                            </select>
+                                                            <span asp-validation-for="@Model.Users[counter].State" class="text-danger" hidden></span>
+                                                        </div>
+
+                                                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-10">
+                                                                <button id="main-btn" type="submit" class="btn btn-link text-white">Update</button>
+                                                                <button id="main-btn" asp-action="Index" class="btn btn-link text-white">Cancel</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @{counter++;}
+                            @*<form method="post" asp-action="DeleteUser" asp-route-id="@user.Id">
+                                    <a asp-action="EditUser" asp-controller="Admin" asp-route-id="@user.Id">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                </form>*@
                         </td>
                     </tr>
                 }
@@ -62,10 +189,8 @@
         <h2>No Users Found</h2>
     }
     <br />
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createUserModal">
-        Create Users
-    </button>
-    <input type="submit" id="btnDeleteRoles" class="btn btn-danger" value="Delete User(s)">
+    <button id="main-btn" type="submit" class="btn btn-link text-white" data-toggle="modal" data-target="#createUserModal">Create New User</button>
+    <input type="submit" id="btnDeleteUsers" class="btn btn-danger" value="Delete User(s)">
     <br />
     <br />
 
@@ -82,21 +207,21 @@
                 </div>
                 <div class="modal-body">
                     <!--Form submission for POST of creating a role to our Admin controller-->
-                    <form asp-action="CreateUserIndex" method="post" class="mt-3">
-                        <div asp-validation-summary="All" class="text-danger">
-                        </div>
-                        <div class="form-group row">
-                            <label asp-for="createRole.RoleName" class="col-sm-2 col-form-label"></label>
-                            <div class="col-sm-10">
-                                <input asp-for="createRole.RoleName" class="form-control" placeholder="Name">
-                                <span asp-validation-for="createRole.RoleName" class="text-danger"></span>
+                    @*<form asp-action="CreateUserIndex" method="post" class="mt-3">
+                            <div asp-validation-summary="All" class="text-danger">
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" style="width:auto">Create Role</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </form>
+                            <div class="form-group row">
+                                <label asp-for="createRole.RoleName" class="col-sm-2 col-form-label"></label>
+                                <div class="col-sm-10">
+                                    <input asp-for="createRole.RoleName" class="form-control" placeholder="Name">
+                                    <span asp-validation-for="createRole.RoleName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary" style="width:auto">Create Role</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>*@
                 </div>
             </div>
         </div>
@@ -123,9 +248,7 @@
         <h2>No Roles Found</h2>
     }
     <br />
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createRoleModal">
-        Create Roles
-    </button>
+    <button id="main-btn" type="submit" class="btn btn-link text-white" data-toggle="modal" data-target="#createRoleModal">Create New Role</button>
     <input type="submit" id="btnDeleteRoles" class="btn btn-danger" value="Delete Role(s)">
 
     <!--Popup modal for creating a new role-->
@@ -151,8 +274,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" style="width:auto">Create Role</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button id="main-btn" type="submit" class="btn btn-link text-white">Create Role</button>
+                            <button id="main-btn" type="submit" class="btn btn-link text-white" data-dismiss="modal">Close</button>
                         </div>
                     </form>
                 </div>
@@ -162,100 +285,6 @@
 </div>
 
 <script>
+    // This is to preset our Javascript variable with a list of information
     var model = JSON.parse('@Html.Raw(Json.Serialize(Model))');
 </script>
-
-
-
-@*<div class="main-container">
-        <h1>All Users</h1>
-
-            @if (Model.Users.Any())
-            {
-                foreach (var user in Model.Users)
-                {
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            User Id : @user.Id
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                @user.Email
-                            </h5>
-                            @if (user.Roles.Any())
-                            {
-                                foreach (var roles in user.Roles)
-                                {
-                                    <h5 class="card-title">
-                                        @roles
-                                    </h5>
-                                }
-                            }
-                            else
-                            {
-                                <h5 class="card-title">
-                                    No Roles Found
-                                </h5>
-                            }
-                        </div>
-                        <div class="card-footer">
-                            <form method="post" asp-action="DeleteUser" asp-route-id="@user.Id">
-                                <a asp-action="EditUser" asp-controller="Admin" asp-route-id="@user.Id" class="btn btn-primary">Edit</a>
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </div>
-                    </div>
-                }
-            }
-            else
-            {
-                <div class="card mb-3">
-                    <div class="card-header"></div>
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            No User Found
-                        </h5>
-                    </div>
-                    <div class="card-footer">
-                        <a asp-action="EditUser" asp-controller="Admin" class="btn btn-primary">Add Roles</a>
-                    </div>
-                </div>
-            }
-
-
-            <h1>All Roles</h1>
-            @if (Model.Roless.Any())
-            {
-                <div class="card mb-3">
-                    <div class="card-header"></div>
-                    <div class="card-body">
-                        @foreach (var role in Model.Roless)
-                        {
-                            <h5 class="card-title">
-                                Role Name: @role.Name
-                            </h5>
-                        }
-                    </div>
-                    <div class="card-footer">
-                        <a asp-action="CreateRole" asp-controller="Admin" class="btn btn-primary">Create Roles</a>
-                        <a asp-action="EditUser" asp-controller="Admin" class="btn btn-danger">Delete Roles</a>
-                    </div>
-                </div>
-            }
-            else
-            {
-                <div class="card mb-3">
-                    <div class="card-header"></div>
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            No Roles Found
-                        </h5>
-                    </div>
-                    <div class="card-footer">
-                        <a asp-action="CreateRole" asp-controller="Admin" class="btn btn-primary">Create Roles</a>
-                        <a asp-action="EditUser" asp-controller="Admin" class="btn btn-primary">Delete Roles</a>
-                    </div>
-                </div>
-            }
-    </div>*@
-

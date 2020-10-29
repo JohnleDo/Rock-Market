@@ -17,5 +17,6 @@ namespace Rock_Market.Models
         public IList<IdentityRole> Roles { get; set; }
         public IList<ListUsersViewModel> Users { get; set; }
         public CreateRoleViewModel createRole { get; set; }
+        public EditUserViewModel editUser { get; set; }
     }
 }
