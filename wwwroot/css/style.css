@@ -91,6 +91,55 @@
         background-color: transparent !important;
     }
 
+.fas.fa-edit {
+    color: rgb(0, 40, 77);
+}
+
+    .fas.fa-edit:hover {
+        color: rgb(0, 66, 128);
+    }
+
+.fas.fa-trash-alt {
+    color: rgb(179, 0, 0);
+}
+
+    .fas.fa-trash-alt:hover {
+        color: rgb(153, 0, 0);
+    }
+
+.main-btn {
+    -moz-border-radius-topleft: 20px;
+    -moz-border-radius-topright: 20px;
+    -moz-border-radius-bottomright: 20px;
+    -moz-border-radius-bottomleft: 20px;
+    -webkit-border-radius: 20px 20px 20px 20px;
+    border-radius: 50px;
+    background-color: rgb(0, 40, 77);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+    .main-btn:hover {
+        background-color: rgb(0, 66, 128);
+        text-decoration: none;
+    }
+
+.main-btn-danger {
+    -moz-border-radius-topleft: 20px;
+    -moz-border-radius-topright: 20px;
+    -moz-border-radius-bottomright: 20px;
+    -moz-border-radius-bottomleft: 20px;
+    -webkit-border-radius: 20px 20px 20px 20px;
+    border-radius: 50px;
+    background-color: rgb(179, 0, 0);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+    .main-btn-danger:hover {
+        background-color: rgb(153, 0, 0);
+    }
+
 .main-container {
     font-family: "Roboto", sans-serif;
     color: lightgray;
@@ -102,8 +151,25 @@
 }
 
     .main-container table {
+        background-color: rgb(79, 116, 150);
         color: white;
     }
+
+        .main-container table tbody tr td form {
+            display: inline-block;
+        }
+
+        .main-container table tbody tr:nth-child(odd) {
+            background-color: rgb(105, 141, 176);
+        }
+
+        .main-container table tbody tr:hover {
+            color: rgb(179, 179, 179);
+        }
+
+        .main-container table tbody .detail-view td hr {
+            background-color: rgb(0, 96, 128);
+        }
 
     .main-container h1, h2, h3, h4, h5 {
         color: white;
@@ -230,6 +296,11 @@
 /***********************************************************************/
 /*IDs Start*/
 /***********************************************************************/
+#createUser-modal-content {
+    top: 20px;
+    left: -150px;
+}
+
 #editUser-modal-content {
     top: -15px;
     left: -150px;
@@ -325,38 +396,6 @@
 
     #input-locked-red .input-group-append span {
         border-color: darkred;
-    }
-
-#main-btn {
-    -moz-border-radius-topleft: 20px;
-    -moz-border-radius-topright: 20px;
-    -moz-border-radius-bottomright: 20px;
-    -moz-border-radius-bottomleft: 20px;
-    -webkit-border-radius: 20px 20px 20px 20px;
-    border-radius: 50px;
-    background-color: rgb(0, 40, 77);
-    font-weight: bold;
-    text-decoration: none;
-}
-
-    #main-btn:hover {
-        background-color: rgb(0, 66, 128);
-    }
-
-#main-btn-danger, #btnDeleteUsers, #btnDeleteRoles {
-    -moz-border-radius-topleft: 20px;
-    -moz-border-radius-topright: 20px;
-    -moz-border-radius-bottomright: 20px;
-    -moz-border-radius-bottomleft: 20px;
-    -webkit-border-radius: 20px 20px 20px 20px;
-    border-radius: 50px;
-    background-color: rgb(179, 0, 0);
-    font-weight: bold;
-    text-decoration: none;
-}
-
-    #main-btn-danger:hover, #btnDeleteUsers:hover, #btnDeleteRoles:hover {
-        background-color: rgb(153, 0, 0);
     }
 
 #verify-code-input {

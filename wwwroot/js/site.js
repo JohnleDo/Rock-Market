@@ -138,10 +138,12 @@ function initroleTable() {
         }, {
             title: 'Role Name',
             field: 'roleName',
-            sortable: true
+            sortable: true,
+            searchable: true,
         }, {
             title: 'Role ID',
             sortable: true,
+            searchable: true,
             field: 'roleId'
         }]
     })
@@ -151,6 +153,59 @@ function initTables() {
     inituserTable()
     initroleTable()
 }
+
+// This is a event call. Whenever a user checks a box it will activate and get the value of the row and add it to our array of users to deleted.
+$("#userTable").on("check.bs.table", function (field, value, row, $el) {
+    removeUsers.push(value['id'])
+});
+
+// This is a event call. Whenever a user unchecks a box it will activate and get the value of the row and remove that Id from our array of users to be deleted.
+$("#userTable").on("uncheck.bs.table", function (field, value, row, $el) {
+    var index = removeUsers.indexOf(value['id'])
+    removeUsers.splice(index, 1)
+});
+
+// This is a event call. Whenever a user checks the top checkbox it will get the values from each role and add it to our array of users to be deleted.
+$("#userTable").on("check-all.bs.table", function (field, value, row, $el) {
+    removeUsers = []
+    for (i = 0; i < value.length; i++) {
+        removeUsers.push(value[i]['id'])
+    }
+});
+
+// This is a event call. Whenever a user unchecks the top checkbox it will reset our array of users to be deleted.
+$("#userTable").on("uncheck-all.bs.table", function (field, value, row, $el) {
+    removeUsers = []
+});
+
+// This is a event call. Whenever a user clicks on our button #btnDeleteUsers it will send a post request to /Admin/DeleteUsers passing a json containing our removeUsers array.
+$("#btnDeleteUsers").on("click", function (e) {
+    e.preventDefault();
+
+    if (removeUsers.length == 0) {
+        alert("No Users were selected to be deleted");
+    }
+
+    else {
+        var result = confirm("Are you sure you want to delete these user(s)?");
+
+        if (result) {
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: "/Admin/DeleteUsers",
+                data: {
+                    userIds: removeUsers,
+                },
+                success: function (data) {
+                    console.log(data.message);
+                    window.location.reload();
+                },
+            });
+        }
+    }
+
+});
 
 // This is a event call. Whenever a user checks a box it will activate and get the value of the row and add it to our array of roles to deleted.
 $("#roleTable").on("check.bs.table", function (field, value, row, $el) {

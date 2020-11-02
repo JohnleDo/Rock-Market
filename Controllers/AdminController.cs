@@ -59,6 +59,37 @@ namespace Rock_Market.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> CreateUserIndex(AdminToolsViewModel model)
+        {
+            var user = new Rock_MarketUser
+            {
+                FirstName = model.createUser.FirstName,
+                LastName = model.createUser.LastName,
+                UserName = model.createUser.Email,
+                Email = model.createUser.Email,
+                Address = model.createUser.Address,
+                City = model.createUser.City,
+                State = model.createUser.State
+            };
+
+            var result = await userManager.CreateAsync(user, model.createUser.Password);
+
+            if (result.Succeeded)
+            {
+                // This usermanager is for assigning a role to every new account created. 
+                userManager.AddToRoleAsync(user, "User").Wait();
+                return RedirectToAction("Index");
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error.Description);
+            }
+            return View("Index");
+        }
+
+        // Edit user information from the Admin Index page and POST it to submit those changes into the database.
+        [HttpPost]
         public async Task<IActionResult> EditUserIndex(AdminToolsViewModel model)
         {
             var user = await userManager.FindByIdAsync(model.Users[0].Id);
@@ -91,7 +122,7 @@ namespace Rock_Market.Controllers
                     ModelState.AddModelError("", error.Description);
                 }
 
-                return View("EditUser", model.editUser);
+                return View("Index");
             }
         }
 
@@ -205,6 +236,32 @@ namespace Rock_Market.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> DeleteUsers(List<string> userIds)
+        {
+            foreach (var userId in userIds)
+            {
+                var user = await userManager.FindByIdAsync(userId);
+
+                if (user == null)
+                {
+                    ViewBag.ErrorMessage = $"Role with Id = {userId} cannot be found";
+                }
+                else
+                {
+                    var result = await userManager.DeleteAsync(user);
+
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                }
+            }
+
+            return Json(new { sucess = true });
+        }
+
+        // Create a new Role from the Admin Index Page and POST it to submit that change into our database.
+        [HttpPost]
         public async Task<IActionResult> CreateRoleIndex(AdminToolsViewModel model)
         {
             if (ModelState.IsValid)
@@ -232,6 +289,7 @@ namespace Rock_Market.Controllers
             return View("Index", model);
         }
 
+        // Delete an existing Role from the Admin Index Page and POST it to submit that change into our database.
         [HttpPost]
         public async Task<IActionResult> DeleteRoles(List<string> roleIds)
         {

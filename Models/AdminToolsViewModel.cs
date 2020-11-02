@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.V3.Pages.Account.Internal;
+using Rock_Market.Areas.Identity.Pages.Account;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,5 +20,6 @@ namespace Rock_Market.Models
         public IList<ListUsersViewModel> Users { get; set; }
         public CreateRoleViewModel createRole { get; set; }
         public EditUserViewModel editUser { get; set; }
+        public CreateUserViewModel createUser { get; set; }
     }
 }

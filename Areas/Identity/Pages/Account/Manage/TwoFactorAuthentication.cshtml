@@ -45,12 +45,12 @@
     <h5>Authenticator app</h5>
     @if (!Model.HasAuthenticator)
     {
-        <a class="btn btn-link text-white" id="main-btn" asp-page="./EnableAuthenticator">Add authenticator app</a>
+        <a class="btn btn-link text-white main-btn" asp-page="./EnableAuthenticator">Add authenticator app</a>
     }
     else
     {
-        <a class="btn btn-link text-white" id="main-btn" asp-page="./EnableAuthenticator" >Setup authenticator app</a>
-        <a class="btn btn-link text-white" id="main-btn-danger" asp-page="./ResetAuthenticator">Reset authenticator app</a>
+        <a class="btn btn-link text-white main-btn" asp-page="./EnableAuthenticator" >Setup authenticator app</a>
+        <a class="btn btn-link text-white main-btn-danger" asp-page="./ResetAuthenticator">Reset authenticator app</a>
     }
 
 </div>
