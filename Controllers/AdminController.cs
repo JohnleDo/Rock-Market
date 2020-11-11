@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -33,10 +34,14 @@ namespace Rock_Market.Controllers
         {
             var users = userManager.Users;
             var usersAndRoles = new AdminToolsViewModel();
+
             foreach (var user in userManager.Users)
             {
                 var userRoles = await userManager.GetRolesAsync(user);
+                DateTimeOffset? offset = user.LockoutEnd;
 
+                // The way this LockoutEnd works is checking if theres a value, if there is one, it will convert it to local time. If not
+                // then it will be just null.
                 var model = new ListUsersViewModel
                 {
                     Id = user.Id,
@@ -47,6 +52,9 @@ namespace Rock_Market.Controllers
                     City = user.City,
                     State = user.State,
                     Email = user.Email,
+                    LockoutEnabled = user.LockoutEnabled,
+                    AccessFailedCount = user.AccessFailedCount,
+                    LockoutEnd = offset.HasValue ? offset.Value.LocalDateTime.ToString("yyyy-MM-ddThh:mm") : null,
                     Roles = userRoles
 
                 };
@@ -109,6 +117,9 @@ namespace Rock_Market.Controllers
                 user.Address = model.Users[0].Address;
                 user.City = model.Users[0].City;
                 user.State = model.Users[0].State;
+                user.LockoutEnabled = model.Users[0].LockoutEnabled;
+                user.AccessFailedCount = model.Users[0].AccessFailedCount;
+                user.LockoutEnd = DateTimeOffset.Parse(model.Users[0].LockoutEnd);
 
                 var result = await userManager.UpdateAsync(user);
 

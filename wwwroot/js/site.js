@@ -24,6 +24,12 @@ function UserDetailFormatter(index, row) {
         html.push('<hr>')
         html.push('<p><b>State :</b> ' + model['users'][index]['state'] + '</p>')
         html.push('<hr>')
+        html.push('<p><b>Lockout Enabled :</b> ' + model['users'][index]['lockoutEnabled'] + '</p>')
+        html.push('<hr>')
+        html.push('<p><b>Access Failed Count :</b> ' + model['users'][index]['accessFailedCount'] + '</p>')
+        html.push('<hr>')
+        html.push('<p><b>Lockout End :</b> ' + model['users'][index]['lockoutEnd'] + '</p>')
+        html.push('<hr>')
         return html.join('')
     }
     else {
@@ -44,6 +50,12 @@ function UserDetailFormatter(index, row) {
                 html.push('<p><b>City :</b> ' + model['users'][i]['city'] + '</p>')
                 html.push('<hr>')
                 html.push('<p><b>State :</b> ' + model['users'][i]['state'] + '</p>')
+                html.push('<hr>')
+                html.push('<p><b>Lockout Enabled :</b> ' + model['users'][index]['lockoutEnabled'] + '</p>')
+                html.push('<hr>')
+                html.push('<p><b>Access Failed Count :</b> ' + model['users'][index]['accessFailedCount'] + '</p>')
+                html.push('<hr>')
+                html.push('<p><b>Lockout End :</b> ' + model['users'][index]['lockoutEnd'] + '</p>')
                 html.push('<hr>')
                 return html.join('')
             }
@@ -115,6 +127,24 @@ function inituserTable() {
             field: 'stateLoc',
             sortable: true,
             searchable: true,
+            visible: false
+        }, {
+            title: 'Lockout Enabled',
+            sortable: true,
+            searchable: true,
+            field: 'lockoutEnabled',
+            visible: false
+        }, {
+            title: 'Access Failed Count',
+            sortable: true,
+            searchable: true,
+            field: 'accessFailedCount',
+            visible: false
+        }, {
+            title: 'Lockout End',
+            sortable: true,
+            searchable: true,
+            field: 'lockoutEnd',
             visible: false
         }, {
             title: 'Roles',

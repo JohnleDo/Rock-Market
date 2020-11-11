@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.CompilerServices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -33,9 +34,12 @@ namespace Rock_Market.Models
 
         [Display(Name = "City")]
         public string City { get; set; }
-
         [Display(Name = "State")]
         public string State { get; set; }
+
+        public string LockoutEnd { get; set; }
+        public Boolean LockoutEnabled { get; set; }
+        public int AccessFailedCount { get; set; }
         public IList<string> Roles { get; set; }
     }
 }

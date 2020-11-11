@@ -26,6 +26,6 @@ namespace Rock_Market.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<Rock_Market.Models.CreateRoleViewModel> ProjectRole { get; set; }
+        public DbSet<Rock_Market.Models.StoreViewModel> Store { get; set; }
     }
 }

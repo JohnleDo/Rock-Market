@@ -215,7 +215,8 @@
         color: white;
     }
 
-    .main-container input[type=tel], .main-container input[type=email], .main-container input[type=password], .main-container input[type=text], .main-container select {
+    .main-container input[type=tel], .main-container input[type=email], .main-container input[type=password], .main-container input[type=text], .main-container input[type=number],
+    .main-container input[type=datetime-local], .main-container select {
         height: 60px;
         width: 500px;
         background-color: rgb(36, 52, 68);
@@ -229,12 +230,12 @@
     }
 
         .main-container input[type=tel]:hover, .main-container input[type=email]:hover, .main-container input[type=password]:hover, .main-container input[type=text]:hover,
-        .main-container select:hover {
+        .main-container input[type=number]:hover, .main-container input[type=datetime-local]:hover, .main-container select:hover {
             border-bottom-color: dodgerblue;
         }
 
         .main-container input[type=tel]:focus, .main-container input[type=email]:focus, .main-container input[type=password]:focus, .main-container input[type=text]:focus,
-        .main-container select:focus {
+        .main-container input[type=number]:focus, .main-container input[type=datetime-local]:focus, .main-container select:focus {
             background-color: rgb(36, 52, 68);
             border-bottom-color: dodgerblue;
             box-shadow: none;

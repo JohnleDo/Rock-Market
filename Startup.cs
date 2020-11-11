@@ -42,8 +42,17 @@ namespace Rock_Market
             services.AddDbContext<AuthDBContext>(options => options.UseSqlServer(
             Configuration.GetConnectionString("AuthDBContextConnection")));
 
-            // Made the signIn = false so that a user without a confirmed email account can still login. 
-            services.AddDefaultIdentity<Rock_MarketUser>(options => options.SignIn.RequireConfirmedAccount = false)
+            /*
+             * 1. Made the signIn = false so that a user without a confirmed email account can still login.
+             * 2. Added Lockout for accounts. It's setup for a max if 5 failed login attempts where they will have to wait 60 minutes before attempting again
+             *    after 5 times.
+             */
+            services.AddDefaultIdentity<Rock_MarketUser>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(60);
+            })
                     .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<AuthDBContext>();
             services.AddControllersWithViews();
