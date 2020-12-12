@@ -1,0 +1,6 @@
+﻿TODO List
+1. Finish adding in Croppie to crop profile images.
+2. Enable images to be added to database.
+3. Add store items.
+4. Add Admin tools for adding/removing/editing store items.
+5. Add shopping cart and the ability to save user's items.
