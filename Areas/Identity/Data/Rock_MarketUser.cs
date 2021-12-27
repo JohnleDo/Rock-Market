@@ -30,5 +30,9 @@ namespace Rock_Market.Areas.Identity.Data
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
         public string State { get; set; }
+
+        [PersonalData]
+        [Column(TypeName = "varbinary(MAX)")]
+        public string ProfilePath { get; set; }
     }
 }

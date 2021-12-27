@@ -1,29 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Rock_Market.Models
 {
-    public class StoreViewModel
+    public class ImageModel
     {
         [Key]
         [Required]
         public string Id { get; set; }
 
         [Required]
-        [DataType(DataType.Text)]
         public string Name { get; set; }
 
         [Required]
-        [DataType(DataType.Currency)]
-        public float Price { get; set; }
+        [DisplayName("Image Group")]
+        public string ImageGroup { get; set; }
 
         [Required]
-        [DataType(DataType.MultilineText)]
-        public string Description { get; set; }
+        public byte[] Image { get; set; }
 
-        public string ImageID { get; set; }
+        [Required]
+        [DisplayName("User ID")]
+        public string UserID { get; set; }
     }
 }

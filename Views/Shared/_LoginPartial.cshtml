@@ -9,6 +9,8 @@
 @inject RoleManager<IdentityRole> RoleManager
 
 <ul class="navbar-nav">
+    @{var userInfo = UserManager.GetUserAsync(User); }
+    @{var userRole = UserManager.GetRolesAsync(userInfo.Result);}
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
@@ -18,15 +20,46 @@
             </a>
         </li>
         <li class="nav-item avatar dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="rounded-circle z-depth-0"
-                     alt="avatar image" id="login-avatar">
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary">
-                @{var userInfo = UserManager.GetUserAsync(User); }
-                @{var userRole = UserManager.GetRolesAsync(userInfo.Result);}
-
-                <a class="dropdown-item">@UserManager.GetUserName(User)</a>
+            @if (!string.IsNullOrWhiteSpace(userInfo.Result.ProfilePath))
+            {
+                var profilePath = @"~/images/User Profile Images/" + userInfo.Result.ProfilePath;
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="~/images/User Profile Images/@userInfo.Result.ProfilePath"
+                         class="rounded-circle z-depth-0"
+                         alt="avatar image" id="login-avatar" />
+                </a>
+            }
+            else
+            {
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="~/images/User Profile Images/default_user_image.png"
+                         class="rounded-circle z-depth-0"
+                         alt="avatar image" id="login-avatar">
+                </a>
+            }
+            <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary" style="border-bottom-left-radius: 25px; border-bottom-right-radius:25px;">
+                <center>
+                    @if (!string.IsNullOrWhiteSpace(userInfo.Result.ProfilePath))
+                    {
+                        var profilePath = @"~/images/User Profile Images/" + userInfo.Result.ProfilePath;
+                        <img src="~/images/User Profile Images/@userInfo.Result.ProfilePath"
+                             class="rounded-circle z-depth-0"
+                             alt="avatar image" id="login-avatar"
+                             style="height: 175px; width:175px;" />
+                    }
+                    else
+                    {
+                        <img src="~/images/User Profile Images/default_user_image.png"
+                             class="rounded-circle z-depth-0"
+                             alt="avatar image" id="login-avatar"
+                             style="height: 175px; width:175px;">
+                    }
+                    <br />
+                    <div class="dropdown-header" style="color: white; font-size:20px; border-bottom: 20px; margin-top: 15px;
+                    margin-bottom: 5px; border-top: 2px solid darkgray; border-bottom: 2px solid darkgray">
+                        @userInfo.Result.FirstName @userInfo.Result.LastName
+                    </div>
+                </center>
                 @foreach (var role in userRole.Result)
                 {
                     if (role == "Administrator")

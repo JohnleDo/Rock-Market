@@ -27,5 +27,6 @@ namespace Rock_Market.Data
         }
 
         public DbSet<Rock_Market.Models.StoreViewModel> Store { get; set; }
+        public DbSet<Rock_Market.Models.ImageModel> Image { get; set; }
     }
 }

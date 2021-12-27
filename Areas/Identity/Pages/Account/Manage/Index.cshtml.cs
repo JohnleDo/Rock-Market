@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -14,13 +17,16 @@ namespace Rock_Market.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<Rock_MarketUser> _userManager;
         private readonly SignInManager<Rock_MarketUser> _signInManager;
+        private readonly IHostingEnvironment _hostEnvironment;
 
         public IndexModel(
             UserManager<Rock_MarketUser> userManager,
-            SignInManager<Rock_MarketUser> signInManager)
+            SignInManager<Rock_MarketUser> signInManager,
+             IHostingEnvironment hostingEnvironment)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _hostEnvironment = hostingEnvironment;
         }
 
         public string Username { get; set; }
@@ -51,6 +57,9 @@ namespace Rock_Market.Areas.Identity.Pages.Account.Manage
 
             [Display(Name = "State")]
             public string State { get; set; }
+
+            [Display(Name = "Profile Image")]
+            public IFormFile ProfileImage { get; set; }
         }
 
         private async Task LoadAsync(Rock_MarketUser user)
@@ -109,6 +118,25 @@ namespace Rock_Market.Areas.Identity.Pages.Account.Manage
                 }
             }
 
+            if (Input.ProfileImage != null)
+            {
+                // Copying File into our FileSystem
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string uniqueFileName = Guid.NewGuid().ToString() + "_" + Input.ProfileImage.FileName;
+                string path = Path.Combine(wwwRootPath + "/images/User Profile Images/", uniqueFileName);
+                Input.ProfileImage.CopyTo(new FileStream(path, FileMode.Create));
+
+                FileInfo file = new FileInfo(_hostEnvironment.WebRootPath + "/images/User Profile Images/" + user.ProfilePath);
+                if (file.Exists)
+                {
+                    // Need Garbage Collection to clear up process for a second delection whenever user changes pictures more than once in a session
+                    System.GC.Collect();
+                    System.GC.WaitForPendingFinalizers();
+                    file.Delete();
+                }
+                user.ProfilePath = uniqueFileName;
+            }
+
             // Updating User information.
             user.FirstName = Input.FirstName;
             user.LastName = Input.LastName;
@@ -126,6 +154,11 @@ namespace Rock_Market.Areas.Identity.Pages.Account.Manage
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();
+        }
+
+        public string SaveFile(Rock_MarketUser user)
+        {
+            return "1";
         }
     }
 }

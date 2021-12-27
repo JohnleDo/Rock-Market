@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -42,6 +43,9 @@ namespace Rock_Market.Models
 
         [Display(Name = "State")]
         public string State { get; set; }
+
+        [Display(Name = "Profile Image")]
+        public IFormFile ProfileImage { get; set; }
 
         public List<string> Claims { get; set; }
 

@@ -45,7 +45,6 @@ E:\Desktop\Git\Rock Market\obj\Debug\netcoreapp3.1\Rock Market.TagHelpers.input.
 E:\Desktop\Git\Rock Market\obj\Debug\netcoreapp3.1\Rock Market.TagHelpers.output.cache
 E:\Desktop\Git\Rock Market\obj\Debug\netcoreapp3.1\Rock Market.RazorCoreGenerate.cache
 E:\Desktop\Git\Rock Market\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
-E:\Desktop\Git\Rock Market\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 E:\Desktop\Git\Rock Market\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 E:\Desktop\Git\Rock Market\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 E:\Desktop\Git\Rock Market\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -421,9 +420,6 @@ E:\Desktop\Git\Rock Market\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2
 E:\Desktop\Git\Rock Market\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 E:\Desktop\Git\Rock Market\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 E:\Desktop\Git\Rock Market\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
-E:\Desktop\Git\Rock Market\obj\Debug\netcoreapp3.1\Rock Market.csproj.CoreCompileInputs.cache
-E:\Desktop\Git\Rock Market\obj\Debug\netcoreapp3.1\Rock Market.MvcApplicationPartsAssemblyInfo.cs
-E:\Desktop\Git\Rock Market\obj\Debug\netcoreapp3.1\Rock Market.MvcApplicationPartsAssemblyInfo.cache
 E:\Desktop\Git\Rock Market\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.json
 E:\Desktop\Git\Rock Market\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.local.json
 E:\Desktop\Git\Rock Market\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
@@ -472,3 +468,7 @@ E:\Desktop\Git\Rock Market\obj\Debug\netcoreapp3.1\Razor\Views\Admin\CreateRole.
 E:\Desktop\Git\Rock Market\obj\Debug\netcoreapp3.1\Razor\Views\Admin\EditUsersInRole.cshtml.g.cs
 E:\Desktop\Git\Rock Market\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 E:\Desktop\Git\Rock Market\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_AdminSideBar.cshtml.g.cs
+E:\Desktop\Git\Rock Market\obj\Debug\netcoreapp3.1\Razor\Views\Home\Store.cshtml.g.cs
+E:\Desktop\Git\Rock Market\obj\Debug\netcoreapp3.1\Rock Market.csproj.CoreCompileInputs.cache
+E:\Desktop\Git\Rock Market\obj\Debug\netcoreapp3.1\Rock Market.MvcApplicationPartsAssemblyInfo.cs
+E:\Desktop\Git\Rock Market\obj\Debug\netcoreapp3.1\Rock Market.MvcApplicationPartsAssemblyInfo.cache
